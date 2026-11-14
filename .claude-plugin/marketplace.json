@@ -1,0 +1,5 @@
+{
+  "name": "clawd-meter",
+  "owner": { "name": "Aypex-agent" },
+  "plugins": [{ "name": "clawd-meter", "source": "./" }]
+}
