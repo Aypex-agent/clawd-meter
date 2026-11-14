@@ -15,6 +15,43 @@ the context window is, on the same scale as
 
 ![the five bands](assets/preview.png)
 
+## The band
+
+Left of the mascot, the band fills in as there's room. Narrowing drops one block at a time
+(activity first, then the trend, then the bubble), so it works from a phone terminal up:
+
+| Band width | Shows |
+|---|---|
+| 84+ columns | trend, activity, bubble, mascot |
+| 60–83 | trend, bubble, mascot |
+| 32–59 | bubble, mascot |
+| under 32 | mascot only |
+
+- **Context trend:** a sparkline of context fill at the end of each turn, coloured by band; the
+  current percentage; an estimate like `~5 turns to foggy` from the recent growth rate; and the rate
+  per turn.
+- **Turn activity:** `● working 1m12s` with a live timer, the tool call count and the tool running
+  now; once the turn ends, how long it took.
+- **Speech bubble:** the mascot talks. In priority order:
+  1. the output of chosen slash commands (by default `/btw`, `/insights`, `/you-should-know`, `/ysk`);
+  2. a nudge when the context crosses into a worse band, such as "cooked (75%). /compact soon…";
+  3. a note when context drops after a compaction, or after a turn over two minutes;
+  4. a band-flavoured quip otherwise.
+
+  A captured or nudge message stays up for 3 turns before quips resume.
+
+Colours use Claude Code's theme keys, so they follow your theme.
+
+### Options (environment variables)
+
+| Variable | Effect |
+|---|---|
+| `CLAWD_METER_MODE` | `image` or `raster` to force a renderer |
+| `CLAWD_METER_CAPTURE` | More slash commands whose output the bubble repeats, comma-separated, e.g. `review,standup` |
+| `CLAWD_METER_DEBUG` | `1` repeats every command's output with its name, to find out what a command is called |
+
+Set them in the `env` block of `~/.claude/settings.json`.
+
 ## Install
 
 At the prompt of a Claude Code terminal session:
