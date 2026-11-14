@@ -220,6 +220,21 @@ export const register: Register = on => {
     const said: Bubble = await read($, bubble)
     const now = await $.clock.now()
     const cols = e.props.bodyColumns
+
+    // Not enough rows for the 4-row layout (e.g. a phone with its keyboard up
+    // squeezes the band): one right-aligned line, the bubble cut to fit and the
+    // band's face, instead of a cropped sprite behind a "↓ more" scroller.
+    if (e.props.maxRows < 4) {
+      const room = Math.max(0, cols - face.length - 1)
+      const line = room >= 8 ? (wrap(said.text, room, 1)[0] ?? '') : ''
+      return (
+        <Box width={cols} justifyContent="flex-end">
+          {line ? <Text dimColor>{`${line} `}</Text> : null}
+          <Text color={color} bold>{face}</Text>
+        </Box>
+      )
+    }
+
     const sprite = SPRITES[band]
 
     const picture =

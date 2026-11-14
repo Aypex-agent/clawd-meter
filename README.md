@@ -27,6 +27,9 @@ Left of the mascot, the band fills in as there's room. Narrowing drops one block
 | 32–59 | bubble, mascot |
 | under 32 | mascot only |
 
+When the band has fewer than 4 rows (a phone with its on-screen keyboard up, say), it switches to
+one right-aligned line: the bubble's text cut to fit, then the band's face, e.g. `cruising. (•‿•)`.
+
 - **Context trend:** a sparkline of context fill at the end of each turn, coloured by band; the
   current percentage; an estimate like `~5 turns to foggy` from the recent growth rate; and the rate
   per turn.
